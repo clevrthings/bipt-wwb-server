@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <title>BIPT → WWB Inclusion Lists</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 2rem; }
+    .card { border: 1px solid #ddd; border-radius: 12px; padding: 1.25rem; max-width: 820px; }
+    ul, ol { padding-left: 1.2rem; }
+    li { margin: .3rem 0; }
+    a { text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .hint { color: #666; font-size: 0.95rem; line-height: 1.45; }
+    .muted { color: #777; font-size: 0.9rem; }
+
+    .pill {
+      display: inline-block;
+      padding: .2rem .55rem;
+      border: 1px solid #e6e6e6;
+      border-radius: 999px;
+      font-size: .85rem;
+      color: #555;
+      background: #fafafa;
+      margin-left: .35rem;
+    }
+
+    .footer {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+    }
+
+    details {
+      margin-top: 1rem;
+      border: 1px dashed #ddd;
+      border-radius: 10px;
+      padding: .6rem .8rem;
+      background: #fafafa;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: #333;
+    }
+
+    summary::marker {
+      font-size: 1.1em;
+    }
+
+    details[open] summary {
+      margin-bottom: .5rem;
+    }
+
+    code {
+      background: #f1f1f1;
+      padding: .1rem .3rem;
+      border-radius: 4px;
+      font-size: .9em;
+    }
+  </style>
+</head>
+<body>
+  <h1>BIPT → Shure WWB inclusion lists</h1>
+
+  <div class="card">
+    <p class="hint">
+      Download hier de meest recente Shure Wireless Workbench
+      <b>inclusion list</b> bestanden (.ils) op basis van de officiële BIPT-zonedocumenten.
+      <span class="pill">WWB .ils</span>
+    </p>
+
+    {% if files|length == 0 %}
+      <p><b>Geen bestanden beschikbaar.</b> Probeer later opnieuw.</p>
+    {% else %}
+      <ul>
+        {% for f in files %}
+          <li><a href="/download/{{ f }}">{{ f }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <details>
+      <summary>📘 Handleiding: inclusion list importeren in Wireless Workbench</summary>
+      <ol class="hint">
+        <li>Open <b>Frequency Coordination</b></li>
+        <li>Klik rechts onderaan op <b>Spectrum</b></li>
+        <li>Klik op het <b>⚙️ gear-icoon</b></li>
+        <li>Bij <b>User Groups</b>: vink
+          <br><code>Account for user groups when calculating frequencies</code> aan
+        </li>
+        <li>Klik rechts naast <b>List</b> op <b>Manage</b></li>
+        <li>Kies <b>Custom</b></li>
+        <li>Klik op het <b>⚙️ gear-icoon</b></li>
+        <li>Kies <b>Import Groups</b></li>
+        <li>Selecteer het gedownloade <code>.ils</code> bestand</li>
+        <li>Klik op <b>Save</b></li>
+      </ol>
+      <p class="muted">
+        Tip: de groepen verschijnen daarna onder <i>Custom inclusion lists</i>.
+      </p>
+    </details>
+
+    <div class="footer">
+      <p class="hint">
+        🔗 <strong>Wireless Workbench downloaden / updaten</strong><br>
+        Nog geen WWB of wil je updaten? Download via:
+        <a href="https://cloud.mc.shure.com/wwb-download-nl" target="_blank" rel="noopener">
+          cloud.mc.shure.com/wwb-download-nl
+        </a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

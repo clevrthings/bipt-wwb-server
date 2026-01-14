@@ -1,0 +1,14 @@
+services:
+  bipt-wwb:
+    build: .
+    container_name: bipt-wwb
+    ports:
+      - "8080:8080"
+    environment:
+      - TZ=Europe/Brussels
+      - DEBUG_USER=admin
+      - DEBUG_PASS=change-me
+      - CHECK_HOUR=2
+      - CHECK_MINUTE=15
+    volumes:
+      - ./data:/data

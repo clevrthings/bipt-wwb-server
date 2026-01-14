@@ -1,0 +1,15 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Runtime data
+data/
+logs/
+stats.sqlite3
+
+# Env / secrets
+.env
+
+# macOS
+.DS_Store
