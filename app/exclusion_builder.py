@@ -671,13 +671,20 @@ async def exclusion_builder_download(
         raise HTTPException(status_code=404, detail="File not found")
 
     media_type = "text/plain; charset=utf-8"
+    headers: dict[str, str] | None = None
     if format == "json":
         media_type = "application/json; charset=utf-8"
     if format == "fxl":
-        media_type = "application/xml; charset=utf-8"
+        # Force download with .fxl extension; some browsers map XML media types to .xml.
+        media_type = "application/octet-stream"
+        headers = {
+            "Content-Disposition": 'attachment; filename="frequencies.fxl"',
+            "X-Content-Type-Options": "nosniff",
+        }
 
     return FileResponse(
         path,
         media_type=media_type,
         filename=f"frequencies.{format}",
+        headers=headers,
     )
